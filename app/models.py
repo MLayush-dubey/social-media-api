@@ -1,0 +1,40 @@
+#this is where we create tables for our sql
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from .database import Base
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+from sqlalchemy.sql.expression import text
+from sqlalchemy.orm import relationship
+
+
+print("🔥 models.py is being executed!")
+print(f"📦 Base in models.py: {Base}")
+
+class Post(Base):
+    __tablename__ = "posts"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    title = Column(String, nullable=False)
+    content = Column(String, nullable=False)
+    published = Column(Boolean, server_default='TRUE', nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    owner_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    
+    owner = relationship("User")  #this user is the class user which we created below--> Fetches the owner info that is trying to fetch the information
+
+
+
+#this is what will be stored in the database from the backend
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, nullable=False, primary_key=True)
+    email = Column(String, nullable=False, unique=True)
+    password = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+
+
+class Votes(Base):
+    __tablename__ = "votes"
+
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    post_id = Column(Integer, ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True)
