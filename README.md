@@ -36,7 +36,7 @@ A robustful and basic RESTful API built with FastAPI for a social media platform
 - **Validation**: Pydantic
 - **CORS**: Enabled for cross-origin requests
 
-## Project Structure
+## Main Project Structure
 
 ```
 social-media-api/
