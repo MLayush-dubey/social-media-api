@@ -58,6 +58,7 @@ social-media-api/
 │   └── utils.py           # Utility functions
 ├── alembic.ini            # Alembic configuration
 └── .env                   # Environment variables (not included)
+└── requirements.txt       #Libraries       
 ```
 
 ## Installation
@@ -76,7 +77,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. **Install dependencies**
 ```bash
-pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic pydantic-settings python-jose pwdlib python-multipart
+pip install -r requirements.txt
 ```
 
 4. **Set up environment variables**
