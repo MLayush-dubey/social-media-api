@@ -30,4 +30,4 @@ app.include_router(votes.router)
 
 @app.get("/")   #decorator- Links the url to the python code below
 async def root():
-    return {"message": "Welcome to my api--reload"}
+    return {"message": "Bind mount"}
